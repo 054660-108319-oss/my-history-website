@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中國歷史學習網</title>
+    <style>
+        /* 整體樣式設計 */
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: #f9f6f0; 
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #8c2d19; /* 經典磚紅 */
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem 1rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* 導覽列（分頁按鈕） */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #5c1e10; /* 深色磚紅 */
+            padding: 0.5rem;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #ffccbc;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .nav-btn:hover {
+            color: white;
+        }
+        .nav-btn.active {
+            color: white;
+            border-bottom: 3px solid #fff;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        /* 分頁顯示控制 */
+        .page {
+            display: none; /* 預設全部隱藏 */
+        }
+        .page.active {
+            display: block; /* 只有加上 active 的分頁會顯示 */
+        }
+
+        /* 內容區塊樣式 */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid #8c2d19;
+        }
+        h2 {
+            color: #8c2d19;
+            margin-top: 0;
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #8c2d19;
+            color: white;
+        }
+
+        /* 測驗區樣式 */
+        .question-group {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ddd;
+        }
+        .options label {
+            display: block;
+            margin: 0.5rem 0;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #8c2d19;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #5c1e10;
+        }
+        #result {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>中國歷史學習網</h1>
+        <p>探索過去的軌跡，測試你的歷史實力！</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="switchPage('home')">🏠 首頁</button>
+        <button class="nav-btn" onclick="switchPage('reading')">📜 歷史閱讀</button>
+        <button class="nav-btn" onclick="switchPage('quiz')">✍️ 歷史小測驗</button>
+    </nav>
+
+    <main>
+        <section id="page-home" class="page active">
+            <div class="card">
+                <h2>歡迎來到歷史學習網！</h2>
+                <p>歷史是一面鏡子，讓我們看清過去，也指引未來的方向。在這個網站中，你可以閱讀精彩的歷史事件，並透過小測驗來檢視自己的學習成果。</p>
+                
+                <h3>歷代王朝簡表</h3>
+                <p>點選上方的「歷史閱讀」可以開始學習特定朝代的故事喔！</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>朝代</th>
+                            <th>建立者</th>
+                            <th>歷史焦點</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>秦朝</strong></td>
+                            <td>秦始皇 嬴政</td>
+                            <td>統一六國、統一度量衡與文字</td>
+                        </tr>
+                        <tr>
+                            <td><strong>漢朝</strong></td>
+                            <td>漢高祖 劉邦</td>
+                            <td>絲路開闢、文景之治、罷黜百家</td>
+                        </tr>
+                        <tr>
+                            <td><strong>唐朝</strong></td>
+                            <td>唐高祖 李淵</td>
+                            <td>貞觀之治、開元盛世、詩歌黃金年代</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="page-reading" class="page">
+            <div class="card">
+                <h2>📜 今日歷史焦點：秦始皇統一六國</h2>
+                <p>戰國末期，秦國經過商鞅變法後，經濟與軍事實力大增。自西元前 230 年至西元前 221 年，<strong>秦王政（後來的秦始皇）</strong>採取了「遠交近攻」的策略，先後滅掉了韓、趙、魏、楚、燕、齊六國，結束了春秋戰國以來數百年的諸侯割據局面，建立了中國歷史上第一個大一統的中央集權王朝——秦朝。</p>
+                <p>統一後，秦始皇推行了一系列重大改革，包括<strong>統一貨幣、文字（小篆）、度量衡</strong>，並修築萬里長城以抵禦北方匈奴。雖然秦朝因律法嚴苛、徭役沉重而迅速滅亡，但它奠定的政治體制對後世產生了深遠的影響。</p>
+            </div>
+        </section>
+
+        <section id="page-quiz" class="page">
+            <div class="card">
+                <h2>✍️ 歷史小測驗</h2>
+                <form id="quiz-form">
+                    
+                    <div class="question-group">
+                        <p><strong>1. 中國歷史上第一個大一統的中央集權王朝是哪一個？</strong></p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) 夏朝</label>
+                            <label><input type="radio" name="q1" value="B"> B) 商朝</label>
+                            <label><input type="radio" name="q1" value="C"> C) 秦朝</label>
+                            <label><input type="radio" name="q1" value="D"> D) 漢朝</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <p><strong>2. 下列哪一項「不是」秦始皇統一後推行的政策？</strong></p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) 統一文字與貨幣</label>
+                            <label><input type="radio" name="q2" value="B"> B) 推行科舉制度</label>
+                            <label><input type="radio" name="q2" value="C"> C) 統一度量衡</label>
+                            <label><input type="radio" name="q2" value="D"> D) 修築萬里長城</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-btn" onclick="calculateScore()">提交答案</button>
+                </form>
+
+                <div id="result"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 【控制分頁切換的 JavaScript】
+        function switchPage(pageId) {
+            // 1. 隱藏所有的分頁
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 2. 取消所有導覽列按鈕的高亮狀態
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 3. 顯示被點選的分頁
+            document.getElementById('page-' + pageId).classList.add('active');
+
+            // 4. 讓目前點選的按鈕變成高亮狀態
+            // 透過比對 onclick 事件裡面的字串來找到對應的按鈕
+            event.currentTarget.classList.add('active');
+        }
+
+        // 【計算測驗分數的 JavaScript】
+        function calculateScore() {
+            const answers = { q1: "C", q2: "B" };
+            let score = 0;
+            
+            const q1Answer = document.querySelector('input[name="q1"]:checked');
+            if (q1Answer && q1Answer.value === answers.q1) score += 50;
+
+            const q2Answer = document.querySelector('input[name="q2"]:checked');
+            if (q2Answer && q2Answer.value === answers.q2) score += 50;
+
+            const resultDiv = document.getElementById('result');
+            if (!q1Answer || !q2Answer) {
+                resultDiv.style.color = '#c62828';
+                resultDiv.innerHTML = "⚠️ 請答完所有題目再提交喔！";
+            } else {
+                resultDiv.style.color = score === 100 ? '#2e7d32' : '#ef6c00';
+                resultDiv.innerHTML = `得分：${score} 分！${score === 100 ? '太棒了，你全對！💯' : '再檢查看看內文，加油！'}`;
+            }
+        }
+    </script>
+</body>
+</html>
