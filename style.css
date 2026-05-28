@@ -1,0 +1,155 @@
+/* ==========================================================================
+   🎨 核心變數與全域設定 (Design Tokens)
+   ========================================================================== */
+:root {
+    --primary: #8c2d19;      /* 經典宮廷紅 */
+    --dark: #4a1308;         /* 深沉木雕紅 */
+    --gold: #d4af37;         /* 皇家古銅金 */
+    --bg: #f5efe2;           /* 仿古宣紙色 */
+    --card-bg: #ffffff;      /* 純白卡片 */
+    --text: #2c2520;         /* 深褐墨色 */
+    --shadow: 0 10px 30px rgba(74, 19, 8, 0.08);
+}
+
+body {
+    font-family: 'Noto Serif TC', 'PingFang TC', serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   🏮 頂部與導覽列 (Layout Components)
+   ========================================================================== */
+header {
+    background-color: var(--primary);
+    background-image: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #d1a89d;
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: white;
+    background-color: var(--primary);
+}
+
+/* ==========================================================================
+   🏰 產品級沉浸感卡片與微動效 (Premium Cards & Interactions)
+   ========================================================================== */
+main {
+    max-width: 850px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    border-top: 6px solid var(--primary);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 高級感的過渡曲線 */
+}
+
+/* 🔥 高級感的核心：Hover 微動效與陰影位移 */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(74, 19, 8, 0.15);
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-top: 0;
+    border-bottom: 2px solid #eadecc;
+    padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   📋 互動組件 (Table & Quiz UI)
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid #eedec7; }
+th { background: var(--primary); color: white; font-weight: 600; }
+tr:nth-child(even) { background-color: #fbf9f3; }
+
+.question-group {
+    margin-bottom: 1.8rem;
+    padding: 1.5rem;
+    background: #fdfbf7;
+    border-radius: 8px;
+    border-left: 4px solid #e0d3be;
+    transition: border-color 0.3s;
+}
+
+.question-group:focus-within {
+    border-left-color: var(--primary);
+}
+
+.option-label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.option-label:hover {
+    background: #f4eee1;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(140, 45, 25, 0.3);
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    background: var(--dark);
+    transform: scale(1.01);
+}
