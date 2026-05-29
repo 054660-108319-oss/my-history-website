@@ -1,60 +1,76 @@
 /* ==========================================================================\
-   🎨 核心變數與全域設定 (深色模式黑金風)
+   🎨 核心變數設定 (預設為古典淺色宣紙風)
    ========================================================================== */
 :root {
-    --primary: #a62b1d;      /* 鮮明宮廷紅 */
-    --dark-bg: #121212;      /* 極致深黑背景 */
-    --card-bg: #1e1e1e;      /* 暗黑卡片背景 */
-    --gold: #ffd700;         /* 閃耀皇家金 */
-    --gold-dim: #cca43b;     /* 古銅暗金 */
-    --text: #e0e0e0;         /* 亮灰白字 */
-    --text-muted: #aaaaaa;   /* 暗灰字 */
-    --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-body {
-    font-family: 'Noto Serif TC', 'PingFang TC', serif;
-    background-color: var(--dark-bg);
-    color: var(--text);
-    margin: 0;
-    line-height: 1.8;
+    --primary: #8c2d19;      /* 經典宮廷紅 */
+    --bg: #f5efe2;           /* 仿古宣紙色 */
+    --card-bg: #ffffff;      /* 純白卡片 */
+    --gold: #d4af37;         /* 皇家古銅金 */
+    --text: #2c2520;         /* 深褐墨色 */
+    --text-muted: #7a6e67;   /* 淺褐字 */
+    --shadow: 0 10px 30px rgba(74, 19, 8, 0.06);
+    --nav-bg: #eadecc;
+    --border: #eedec7;
 }
 
 /* ==========================================================================\
-   🏮 頂部與導覽列 (帥氣字體與漸層)
+   🌙 核心變數設定 (當啟動 .dark-mode 時，變數全部無縫切換為暗黑風)
    ========================================================================== */
+body.dark-mode {
+    --primary: #a62b1d;      /* 鮮明宮廷紅 */
+    --bg: #121212;           /* 極致深黑背景 */
+    --card-bg: #1e1e1e;      /* 暗黑卡片背景 */
+    --gold: #ffd700;         /* 傳統皇家金 */
+    --text: #e0e0e0;         /* 亮灰白字 */
+    --text-muted: #aaaaaa;   /* 暗灰字 */
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --nav-bg: #1a1a1a;
+    --border: #2a2a2a;
+}
+
+/* ==========================================================================\
+   🏮 全域樣式 (全部改用變數控制，才能一鍵切換)
+   ========================================================================== */
+body {
+    font-family: 'Noto Serif TC', 'PingFang TC', serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.8;
+    transition: background-color 0.3s, color 0.3s; /* 讓切換顏色時有柔和的淡入淡出效果 */
+}
+
 header {
     background: linear-gradient(135deg, #2c0804 0%, #121212 100%);
-    border-bottom: 2px solid var(--gold-dim);
+    border-bottom: 2px solid var(--gold);
     text-align: center;
-    padding: 4rem 1rem 2rem;
+    padding: 3.5rem 1rem 2rem;
     position: relative;
 }
 
-/* 🎯 標題變超帥：金屬漸層 + 霓虹發光 + 字體放大 */
 header h1 {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     margin: 0;
     font-weight: 700;
     letter-spacing: 4px;
     background: linear-gradient(to bottom, #ffffff 30%, var(--gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
 }
 
 header p {
-    color: var(--gold-dim);
+    color: var(--gold);
     font-size: 1.1rem;
     margin-top: 0.5rem;
     letter-spacing: 2px;
 }
 
 nav {
-    background-color: #1a1a1a;
+    background-color: var(--nav-bg);
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -70,13 +86,31 @@ nav a {
 
 nav a:hover, nav a.active {
     color: var(--gold);
-    background-color: #252525;
+    background-color: var(--card-bg);
     box-shadow: inset 0 -3px 0 var(--gold);
 }
 
-/* ==========================================================================\
-   📦 主體版面與卡片 (微動效)
-   ========================================================================== */
+/* 🎯 右上角浮動切換模式按鈕 */
+.theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    z-index: 10;
+}
+.theme-toggle-btn:hover {
+    background: var(--gold);
+    color: #000;
+}
+
 main {
     max-width: 800px;
     margin: 40px auto;
@@ -88,26 +122,26 @@ main {
     padding: 40px;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    border: 1px solid #2a2a2a;
-    transition: transform 0.3s, border-color 0.3s;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s, background-color 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: var(--gold-dim);
+    border-color: var(--gold);
 }
 
 h2 {
-    color: var(--gold);
+    color: var(--primary);
     font-size: 1.8rem;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid var(--border);
     padding-bottom: 0.5rem;
     margin-top: 0;
 }
+body.dark-mode h2 {
+    color: var(--gold); /* 深色模式下二級標題變金色比較好看 */
+}
 
-/* ==========================================================================\
-   📋 互動組件 (表格與按鈕)
-   ========================================================================== */
 table {
     width: 100%;
     border-collapse: separate;
@@ -115,25 +149,25 @@ table {
     margin-top: 1.5rem;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #333;
+    border: 1px solid var(--border);
 }
 
-th, td { padding: 14px; text-align: left; border-bottom: 1px solid #222; }
-th { background: #2a2a2a; color: var(--gold); font-weight: 600; }
-tr:nth-child(even) { background-color: #161616; }
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--primary); color: white; font-weight: 600; }
+body.dark-mode th { background: #2a2a2a; color: var(--gold); }
+tr:nth-child(even) { background-color: var(--bg); }
 
 .question-group {
     margin-bottom: 1.8rem;
     padding: 1.5rem;
-    background: #161616;
+    background: var(--bg);
     border-radius: 8px;
-    border-left: 4px solid #333;
+    border-left: 4px solid var(--border);
     transition: all 0.3s;
 }
 
 .question-group:focus-within {
     border-left-color: var(--gold);
-    background: #222;
 }
 
 .option-label {
@@ -147,14 +181,14 @@ tr:nth-child(even) { background-color: #161616; }
 }
 
 .option-label:hover {
-    background: #2a2a2a;
+    background: var(--border);
     color: var(--text);
 }
 
 .submit-btn {
     background: linear-gradient(135deg, var(--primary) 0%, #5a120a 100%);
     color: white;
-    border: 1px solid var(--gold-dim);
+    border: 1px solid var(--gold);
     padding: 12px 30px;
     font-size: 1.1rem;
     border-radius: 6px;
@@ -162,7 +196,7 @@ tr:nth-child(even) { background-color: #161616; }
     width: 100%;
     font-weight: bold;
     letter-spacing: 1px;
-    transition: opacity 0.2s, transform 0.1s;
+    transition: all 0.2s;
 }
 
 .submit-btn:hover {
@@ -170,15 +204,10 @@ tr:nth-child(even) { background-color: #161616; }
     box-shadow: 0 0 15px rgba(166, 43, 29, 0.4);
 }
 
-.submit-btn:active {
-    transform: scale(0.98);
-}
-
-/* 隨機按鈕帥氣樣式 */
 .random-btn {
-    background: #2a2a2a;
-    color: var(--gold);
-    border: 1px solid var(--gold-dim);
+    background: var(--nav-bg);
+    color: var(--text);
+    border: 1px solid var(--gold);
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
