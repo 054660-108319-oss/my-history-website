@@ -6,7 +6,7 @@
     <title>中國歷史學習網 - 歷史閱讀</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
+    <script src="script.js" defer></script> </head>
 <body>
     <header>
         <h1>中國歷史學習網</h1>
@@ -19,9 +19,9 @@
     </nav>
     <main>
         <div class="card">
-            <h2>盛唐氣象：中國歷史的黃金時代</h2>
-            <p>唐朝（西元618年－907年）是中國歷史上最強盛的朝代之一。自唐太宗「貞觀之治」起，國力日益強盛。唐朝首都長安是當時世界上最大的城市，吸引了來自波斯、新羅、日本的使節與商人。</p>
-            <p>這個時代最大的成就在於文化與藝術。李白、杜甫的詩作流傳千古；吳道子的畫作被譽為神品。同時，唐朝展現了極高的包容性，佛教、景教、伊斯蘭教等各類宗教在境內自由發展，展現了開放的「大唐氣度」。</p>
+            <button class="random-btn" onclick="getRandomArticle()">🎲 天命翻牌（隨機抽文章）</button>
+            <h2 id="article-title">正在載入歷史卷軸...</h2>
+            <div id="article-content"></div>
         </div>
     </main>
 </body>
